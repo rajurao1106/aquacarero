@@ -2,8 +2,8 @@
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-import water_purifier1 from "@/public/water purifier/water-purifier1.jpg"
-import water_purifier2 from "@/public/water purifier/water-purifier2.jpg"
+import water_purifier1 from "@/public/water purifier/water-purifier1.jpg";
+import water_purifier2 from "@/public/water purifier/water-purifier2.jpg";
 
 // Mock Data strictly following the layout style and parameters in the image
 const INITIAL_PRODUCTS = [
@@ -33,7 +33,6 @@ const INITIAL_PRODUCTS = [
     popularity: 4,
     isSoldOut: false,
   },
-
 ];
 
 export default function WaterPurifier() {
@@ -271,7 +270,7 @@ export default function WaterPurifier() {
                         href={"/contact"}
                         className={`rounded-full py-2.5 text-xs font-bold text-white shadow-sm transition-all text-center border bg-[#1e2e4d] border-[#1e2e4d] hover:bg-slate-800`}
                       >
-                        Conatct Us
+                        Contact Us
                       </a>
                     </div>
                   </div>

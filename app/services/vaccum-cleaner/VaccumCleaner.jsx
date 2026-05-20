@@ -2,12 +2,12 @@
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-import vaccum_cleaner1 from "@/public/vaccum cleaner/vaccum-cleaner1.jpg"
-import vaccum_cleaner2 from "@/public/vaccum cleaner/vaccum-cleaner2.webp"
+import vaccum_cleaner1 from "@/public/vaccum cleaner/vaccum-cleaner1.jpg";
+import vaccum_cleaner2 from "@/public/vaccum cleaner/vaccum-cleaner2.webp";
 
 // Mock Data strictly following the layout style and parameters in the image
 const INITIAL_PRODUCTS = [
- {
+  {
     id: 4,
     name: "Smart Robotic Vacuum Cleaner with Self-Emptying Dock",
     description:
@@ -33,7 +33,6 @@ const INITIAL_PRODUCTS = [
     popularity: 4.3,
     isSoldOut: false,
   },
- 
 ];
 
 export default function VaccumCleaner() {
@@ -271,7 +270,7 @@ export default function VaccumCleaner() {
                         href={"/contact"}
                         className={`rounded-full py-2.5 text-xs font-bold text-white shadow-sm transition-all text-center border bg-[#1e2e4d] border-[#1e2e4d] hover:bg-slate-800`}
                       >
-                        Conatct Us
+                        Contact Us
                       </a>
                     </div>
                   </div>

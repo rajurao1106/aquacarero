@@ -9,7 +9,7 @@ import Image from "next/image";
 
 // Mock Data strictly following the layout style and parameters in the image
 const INITIAL_PRODUCTS = [
- {
+  {
     id: 6,
     name: "Complete RO Water Purifier Filter Cartridge Kit",
     description:
@@ -60,7 +60,7 @@ const INITIAL_PRODUCTS = [
     color: "Copper/Bronze",
     popularity: 4.1,
     isSoldOut: true,
-  }
+  },
 ];
 
 export default function SpareParts() {
@@ -298,7 +298,7 @@ export default function SpareParts() {
                         href={"/contact"}
                         className={`rounded-full py-2.5 text-xs font-bold text-white shadow-sm transition-all text-center border bg-[#1e2e4d] border-[#1e2e4d] hover:bg-slate-800`}
                       >
-                        Conatct Us
+                        Contact Us
                       </a>
                     </div>
                   </div>

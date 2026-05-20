@@ -2,10 +2,11 @@
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-import water_softner1 from "@/public/water softner/water-softner.webp"
+// ✅ Line 7
+import water_softner from "@/public/water softner/water-softner1.webp";
 // Mock Data strictly following the layout style and parameters in the image
 const INITIAL_PRODUCTS = [
-{
+  {
     id: 1,
     name: "Whole House Automatic Water Softener System",
     description:
@@ -18,8 +19,6 @@ const INITIAL_PRODUCTS = [
     popularity: 4.5,
     isSoldOut: false,
   },
-
-
 ];
 
 export default function WaterSoftner() {
@@ -257,7 +256,7 @@ export default function WaterSoftner() {
                         href={"/contact"}
                         className={`rounded-full py-2.5 text-xs font-bold text-white shadow-sm transition-all text-center border bg-[#1e2e4d] border-[#1e2e4d] hover:bg-slate-800`}
                       >
-                        Conatct Us
+                        Contact Us
                       </a>
                     </div>
                   </div>
