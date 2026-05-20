@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import features1 from "@/public/homepage/features1.jpg"
 export default function Features() {
   // 3 Advantages of having an RO Purifier
   const leftFeatures = [
@@ -47,9 +47,9 @@ export default function Features() {
         <span className="text-xs font-bold uppercase tracking-widest text-[#00c4ff]">
           The Purity Comparison
         </span>
-        <h2 className="text-3xl font-extrabold tracking-tight text-[#1e2e4d] sm:text-4xl lg:text-5xl leading-tight">
+        <h2 className="text-3xl font-extrabold font-serif tracking-tight text-[#1e2e4d] sm:text-4xl lg:text-5xl leading-tight">
           With Purifier vs. Without Purifier:
-          <br className="hidden sm:inline" /> Make the Right Choice.
+          Make the Right Choice.
         </h2>
       </div>
 
@@ -68,7 +68,7 @@ export default function Features() {
               className="group flex flex-col items-center lg:items-end space-y-2"
             >
               <div className="flex items-center space-x-3 lg:space-x-reverse flex-row lg:flex-row-reverse">
-                <h3 className="text-xl font-bold text-[#1e2e4d] transition-colors group-hover:text-emerald-500">
+                <h3 className="text-xl font-serif font-bold text-[#1e2e4d] transition-colors group-hover:text-emerald-500">
                   {feature.title}
                 </h3>
                 {/* Concentric Green Pointer Dot for Advantages */}
@@ -92,13 +92,13 @@ export default function Features() {
           </div>
 
           {/* Central Jug Image Container */}
-          <div className="relative z-10 w-[240px] h-[340px] transform transition-transform duration-500 hover:scale-105">
+          <div className="relative z-10 w-[240px] h-[240px] transform overflow-hidden transition-transform duration-500 hover:scale-105">
             <Image
-              src="/water-jar.png" // Replace with your transparent jar asset path
+              src={features1} // Replace with your transparent jar asset path
               alt="Aquacarero RO Pure Water"
               fill
               priority
-              className="object-contain filter drop-shadow-[0_15px_30px_rgba(14,165,233,0.15)]"
+              className="object-contain rounded-full "
             />
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function Features() {
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-rose-500/20">
                   <span className="h-2.5 w-2.5 rounded-full bg-rose-500"></span>
                 </span>
-                <h3 className="text-xl font-bold text-[#1e2e4d] transition-colors group-hover:text-rose-500">
+                <h3 className="text-xl font-serif font-bold text-[#1e2e4d] transition-colors group-hover:text-rose-500">
                   {feature.title}
                 </h3>
               </div>

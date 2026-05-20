@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import about1 from "@/public/about/about1.png"
 export default function About() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 bg-white font-sans antialiased text-slate-800">
@@ -11,7 +11,7 @@ export default function About() {
             About Company
           </span>
 
-          <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl leading-[1.15]">
+          <h2 className="text-4xl font-serif font-bold tracking-tight text-slate-900 sm:text-5xl leading-[1.15]">
             Pioneering Pure Water <br />
             For Homes & Businesses.
           </h2>
@@ -32,7 +32,7 @@ export default function About() {
           <div className="grid grid-cols-1 gap-6 pt-6 sm:grid-cols-2 border-t border-gray-100">
             {/* Our Story Block */}
             <div className="space-y-2">
-              <h4 className="text-lg font-bold tracking-tight text-slate-900">
+              <h4 className="text-lg font-serif font-bold tracking-tight text-slate-900">
                 Our Story
               </h4>
               <p className="text-sm leading-relaxed text-gray-500">
@@ -45,7 +45,7 @@ export default function About() {
 
             {/* Our Mission Block */}
             <div className="space-y-2">
-              <h4 className="text-lg font-bold tracking-tight text-slate-900">
+              <h4 className="text-lg font-serif font-bold tracking-tight text-slate-900">
                 Our Mission
               </h4>
               <p className="text-sm leading-relaxed text-gray-500">
@@ -60,9 +60,9 @@ export default function About() {
 
         {/* --- RIGHT COLUMN: LARGE IMAGE SECTION --- */}
         <div className="lg:col-span-5">
-          <div className="relative h-[450px] sm:h-[550px] w-full overflow-hidden rounded-2xl shadow-lg">
+          <div className="relative h-[450px] sm:h-[500px] w-full overflow-hidden rounded-2xl shadow-lg">
             <Image
-              src="/about-showcase.jpg" // Replace with your corporate setup or premium filter asset
+              src={about1} // Replace with your corporate setup or premium filter asset
               alt="Aquacarero RO laboratory and product design engineering showcase"
               fill
               className="object-cover"

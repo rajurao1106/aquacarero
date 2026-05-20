@@ -1,61 +1,39 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Image from "next/image";
+import vaccum_cleaner1 from "@/public/vaccum cleaner/vaccum-cleaner1.jpg"
+import vaccum_cleaner2 from "@/public/vaccum cleaner/vaccum-cleaner2.webp"
 
 // Mock Data strictly following the layout style and parameters in the image
 const INITIAL_PRODUCTS = [
-  {
-    id: 1,
-    name: "KENT Sapphire IoT RO Water Purifier",
-    description:
-      "KENT Sapphire IoT is the most advanced RO water purifier that uses multiple purification processes of RO+UF+UV+Alkaline+Copper +TDS Control with smart monitoring features.",
-    bestPrice: 21999,
-    mrp: 28000,
-    discount: "Save 21%",
-    image: "/sapphire-ro.png", // Replace with your product image path
-    color: "Black",
-    popularity: 5,
-    isSoldOut: false,
-  },
-  {
-    id: 2,
-    name: "KENT Grand IoT RO Water Purifier",
-    description:
-      "KENT Grand IoT is the most advanced RO water purifier that uses a multiple purification process of RO+UV+UF+Alkaline+Copper+TDS Control + UV in tank parameters.",
-    bestPrice: 21999,
-    mrp: 28000,
-    discount: "Save 21%",
-    image: "/grand-ro.png", // Replace with your product image path
-    color: "Black",
-    popularity: 4,
-    isSoldOut: false,
-  },
-  {
-    id: 3,
-    name: "KENT Sterling IoT RO Water Purifier",
-    description:
-      "KENT Sterling IoT is the most advanced under-the-counter RO water purifier that uses multiple purification processes of premium filtration layers.",
-    bestPrice: 22799,
-    mrp: 28000,
-    discount: null,
-    image: "/sterling-ro.png", // Replace with your product image path
-    color: "Black",
-    popularity: 3,
-    isSoldOut: true, // Marked as Sold Out like in the image
-  },
-  {
+ {
     id: 4,
-    name: "Eco-Pure White Slim RO Purifier",
+    name: "Smart Robotic Vacuum Cleaner with Self-Emptying Dock",
     description:
-      "Compact wall-mountable smart RO system designed specially for municipal tap water sources with real-time digital monitoring panel systems.",
-    bestPrice: 15499,
-    mrp: 19999,
-    discount: "Save 22%",
-    image: "/white-ro.png", // Replace with your product image path
-    color: "White",
-    popularity: 2,
+      "Intelligent hands-free robot vacuum with LiDAR navigation, precise obstacle avoidance, and an automated dirt disposal charging station.",
+    bestPrice: 2999,
+    mrp: 48000,
+    discount: "Save 28%",
+    image: vaccum_cleaner1,
+    color: "Black",
+    popularity: 4.7,
     isSoldOut: false,
   },
+  {
+    id: 5,
+    name: "Heavy Duty Wet & Dry Drum Vacuum Cleaner",
+    description:
+      "Powerful multi-purpose vacuum cleaner with high suction capacity, durable blower function, and a robust body perfect for deep household cleaning.",
+    bestPrice: 5499,
+    mrp: 8999,
+    discount: "Save 38%",
+    image: vaccum_cleaner2,
+    color: "Black & Red",
+    popularity: 4.3,
+    isSoldOut: false,
+  },
+ 
 ];
 
 export default function VaccumCleaner() {
@@ -253,8 +231,15 @@ export default function VaccumCleaner() {
                   <div className="flex flex-col items-center pt-4 pb-6">
                     <div className="relative flex h-48 w-full items-center justify-center bg-slate-50/40 rounded-xl p-4">
                       {/* Using fallback div rendering to represent image placeholder context structure */}
-                      <div className="w-36 h-44 bg-slate-200 rounded-lg flex items-center justify-center text-xs font-semibold text-gray-400 shadow-inner">
-                        Product Photo
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-contain"
+                          priority={product.id <= 3} // Optimization hint for above the fold assets
+                        />
                       </div>
                     </div>
                   </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { ShieldCheck, Zap } from "lucide-react"; // Swapped LineChart for water/purity related icons
-
+import about1 from "@/public/homepage/about1.jpg"
 export default function About() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -11,7 +11,7 @@ export default function About() {
           {/* Main Large Image */}
           <div className="overflow-hidden rounded-2xl bg-gray-100 shadow-md">
             <Image
-              src="/main-purifier.jpg" // Replace with your main image path
+              src={about1} // Replace with your main image path
               alt="Aquacarero RO Water Purifier installation"
               width={600}
               height={450}
@@ -27,7 +27,7 @@ export default function About() {
             <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">
               Why Choose Aquacarero
             </span>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl leading-tight max-w-md">
+            <h2 className="text-3xl font-serif  tracking-tight text-slate-800 sm:text-4xl leading-tight max-w-md">
               We promise pure, safe, and mineral-rich water for a healthier
               life.
             </h2>
@@ -44,12 +44,12 @@ export default function About() {
             {/* Feature 1 */}
             <div className="flex items-start space-x-4">
               {/* Amber Icon Circle */}
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-400 text-white shadow-sm">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-500  text-white shadow-sm">
                 <ShieldCheck className="h-5 w-5" />
               </div>
               {/* Feature Copy */}
               <div className="space-y-1">
-                <h3 className="text-lg font-bold text-slate-800">
+                <h3 className="text-lg font-bold font-serif text-slate-800">
                   Multi-Stage Multi-Layer Shield
                 </h3>
                 <div className="h-[2px] w-8 bg-cyan-400" />{" "}
@@ -65,12 +65,12 @@ export default function About() {
             {/* Feature 2 */}
             <div className="flex items-start space-x-4">
               {/* Amber Icon Circle */}
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-400 text-white shadow-sm">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-500  text-white shadow-sm">
                 <Zap className="h-5 w-5" />
               </div>
               {/* Feature Copy */}
               <div className="space-y-1">
-                <h3 className="text-lg font-bold text-slate-800">
+                <h3 className="text-lg font-bold font-serif text-slate-800">
                   Active Mineral Retention
                 </h3>
                 <div className="h-[2px] w-8 bg-cyan-400" />{" "}

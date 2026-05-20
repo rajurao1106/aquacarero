@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Image from "next/image";
+import water_purifier1 from "@/public/water purifier/water-purifier1.jpg"
+import water_purifier2 from "@/public/water purifier/water-purifier2.jpg"
 
 // Mock Data strictly following the layout style and parameters in the image
 const INITIAL_PRODUCTS = [
@@ -12,7 +15,7 @@ const INITIAL_PRODUCTS = [
     bestPrice: 21999,
     mrp: 28000,
     discount: "Save 21%",
-    image: "/sapphire-ro.png", // Replace with your product image path
+    image: water_purifier1, // Replace with your product image path
     color: "Black",
     popularity: 5,
     isSoldOut: false,
@@ -25,37 +28,12 @@ const INITIAL_PRODUCTS = [
     bestPrice: 21999,
     mrp: 28000,
     discount: "Save 21%",
-    image: "/grand-ro.png", // Replace with your product image path
+    image: water_purifier2, // Replace with your product image path
     color: "Black",
     popularity: 4,
     isSoldOut: false,
   },
-  {
-    id: 3,
-    name: "KENT Sterling IoT RO Water Purifier",
-    description:
-      "KENT Sterling IoT is the most advanced under-the-counter RO water purifier that uses multiple purification processes of premium filtration layers.",
-    bestPrice: 22799,
-    mrp: 28000,
-    discount: null,
-    image: "/sterling-ro.png", // Replace with your product image path
-    color: "Black",
-    popularity: 3,
-    isSoldOut: true, // Marked as Sold Out like in the image
-  },
-  {
-    id: 4,
-    name: "Eco-Pure White Slim RO Purifier",
-    description:
-      "Compact wall-mountable smart RO system designed specially for municipal tap water sources with real-time digital monitoring panel systems.",
-    bestPrice: 15499,
-    mrp: 19999,
-    discount: "Save 22%",
-    image: "/white-ro.png", // Replace with your product image path
-    color: "White",
-    popularity: 2,
-    isSoldOut: false,
-  },
+
 ];
 
 export default function WaterPurifier() {
@@ -253,8 +231,15 @@ export default function WaterPurifier() {
                   <div className="flex flex-col items-center pt-4 pb-6">
                     <div className="relative flex h-48 w-full items-center justify-center bg-slate-50/40 rounded-xl p-4">
                       {/* Using fallback div rendering to represent image placeholder context structure */}
-                      <div className="w-36 h-44 bg-slate-200 rounded-lg flex items-center justify-center text-xs font-semibold text-gray-400 shadow-inner">
-                        Product Photo
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-contain"
+                          priority={product.id <= 3} // Optimization hint for above the fold assets
+                        />
                       </div>
                     </div>
                   </div>

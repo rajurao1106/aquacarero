@@ -21,7 +21,7 @@ export default function Contact() {
         <span className="text-xs font-bold uppercase tracking-widest text-[#0ea5e9]">
           Get In Touch
         </span>
-        <h1 className="text-4xl font-extrabold tracking-tight text-[#1e2e4d] sm:text-5xl">
+        <h1 className="text-4xl font-serif font-bold tracking-tight text-[#1e2e4d] sm:text-5xl">
           Contact Our Team
         </h1>
         <p className="text-xs tracking-wider text-gray-400 font-semibold uppercase">
@@ -35,7 +35,7 @@ export default function Contact() {
           {/* LEFT COLUMN: Contact Details Info */}
           <div className="lg:col-span-5 space-y-8 bg-slate-50/50 p-8 rounded-3xl border border-gray-100/50">
             <div className="space-y-2">
-              <h2 className="text-2xl font-extrabold tracking-tight text-[#1e2e4d]">
+              <h2 className="text-2xl font-serif font-extrabold tracking-tight text-[#1e2e4d]">
                 Aquacarero
               </h2>
               <p className="text-sm text-gray-500">
@@ -51,7 +51,7 @@ export default function Contact() {
                   <FaPhoneAlt className="h-4 w-4" />
                 </div>
                 <div className="text-sm pt-1 space-y-0.5">
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                  <p className="text-xs font-bold font-serif uppercase tracking-wider text-gray-400">
                     Call Support
                   </p>
                   <a
@@ -69,7 +69,7 @@ export default function Contact() {
                   <FaMapMarkerAlt className="h-4 w-4" />
                 </div>
                 <div className="text-sm pt-1 space-y-0.5">
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                  <p className="text-xs font-bold font-serif uppercase tracking-wider text-gray-400">
                     Our Office
                   </p>
                   <p className="text-slate-800  leading-relaxed max-w-xs">
@@ -84,7 +84,7 @@ export default function Contact() {
                   <FaRegEnvelope className="h-4 w-4" />
                 </div>
                 <div className="text-sm pt-1 space-y-0.5">
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                  <p className="text-xs font-bold font-serif uppercase tracking-wider text-gray-400">
                     Email Enquiries
                   </p>
                   <a
@@ -102,7 +102,7 @@ export default function Contact() {
                   <FaRegClock className="h-4 w-4" />
                 </div>
                 <div className="text-sm pt-1 space-y-0.5">
-                  <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                  <p className="text-xs font-serif font-bold uppercase tracking-wider text-gray-400">
                     Working Hours
                   </p>
                   <div className="text-slate-800  leading-relaxed">
@@ -117,7 +117,7 @@ export default function Contact() {
           {/* RIGHT COLUMN: Interactive Input Message Form */}
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-2">
-              <h2 className="text-2xl font-extrabold tracking-tight text-[#1e2e4d]">
+              <h2 className="text-2xl font-serif font-bold tracking-tight text-[#1e2e4d]">
                 Send an Instant Message
               </h2>
               {/* Decorative brand cyan accent line */}
@@ -128,7 +128,7 @@ export default function Contact() {
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 {/* Name */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-slate-700 tracking-wide block">
+                  <label className="text-xs font-serif font-bold text-slate-700 tracking-wide block">
                     Your Name
                   </label>
                   <input
@@ -140,7 +140,7 @@ export default function Contact() {
 
                 {/* Email Address */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-slate-700 tracking-wide block">
+                  <label className="text-xs font-serif font-bold text-slate-700 tracking-wide block">
                     Email Address
                   </label>
                   <input
@@ -152,7 +152,7 @@ export default function Contact() {
 
                 {/* Subject */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-slate-700 tracking-wide block">
+                  <label className="text-xs font-serif font-bold text-slate-700 tracking-wide block">
                     Subject / Concern
                   </label>
                   <input
@@ -164,7 +164,7 @@ export default function Contact() {
 
                 {/* Phone */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-slate-700 tracking-wide block">
+                  <label className="text-xs font-serif font-bold text-slate-700 tracking-wide block">
                     Contact Phone
                   </label>
                   <input
@@ -177,7 +177,7 @@ export default function Contact() {
 
               {/* Message */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-slate-700 tracking-wide block">
+                <label className="text-xs font-serif font-bold text-slate-700 tracking-wide block">
                   Write Your Message
                 </label>
                 <textarea

@@ -1,58 +1,81 @@
 import React from "react";
 import Image from "next/image";
-import { Search, User } from "lucide-react";
+import { ArrowRight, ShieldCheck, Droplet } from "lucide-react";
+import hero1 from "@/public/homepage/hero1.png";
 
 export default function Hero() {
   return (
-    <div className="min-h-screen bg-white font-sans antialiased text-[#1e293b]">
+    <div className="min-h-screen bg-slate-50/50 font-sans antialiased text-[#1e293b] flex items-center">
       {/* --- HERO MAIN CONTENT --- */}
-      <main className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+      <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Curved Light Blue Background Wrapper */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#e0f2fe] via-[#f0f9ff] to-[#ffffff] px-8 py-12 sm:px-12 lg:px-20 lg:py-20">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#e0f2fe] via-[#f0f9ff] to-white px-6 py-12 sm:px-12 lg:px-20 lg:py-16 border border-sky-100/50 shadow-sm">
+          
+          {/* Subtle Abstract Background Blob for Depth */}
+          <div className="absolute top-0 right-0 -mt-20 -mr-20 h-80 w-80 rounded-full bg-sky-200/40 blur-3xl pointer-events-none" />
+
+          <div className=" items-center flex max-lg:flex-col max-lg:flex-col-reverse gap-12 lg:grid-cols-12 relative z-10">
             {/* Left Content Column */}
-            <div className="space-y-6 lg:col-span-7">
-              <h1 className="text-4xl font-extrabold tracking-tight text-[#1c2e4d] sm:text-5xl lg:text-6xl leading-[1.15]">
+            <div className="space-y-6 lg:col-span-7 flex flex-col justify-center">
+              
+              {/* Feature Tag */}
+              <div className="inline-flex font-serif w-fit items-center gap-1.5 rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sky-600 border border-sky-200/60">
+                <span className="flex h-2 w-2  rounded-full bg-sky-500 animate-pulse" />
+                Pure Health Evolution
+              </div>
+
+              <h1 className="text-5xl font-serif tracking-tight text-[#1c2e4d] sm:text-5xl lg:text-6xl leading-[1.12]">
                 Aquacarero
-                <br />
-                <span className="block mt-1">RO Water Purifier</span>
+                <span className="block mt-2 bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">
+                  RO Water Purifier
+                </span>
               </h1>
 
-              <p className="max-w-xl text-base leading-relaxed text-gray-500 sm:text-lg">
-                Advanced RO technology designed to eliminate 99% of impurities,
-                delivering crisp, safe, and mineral-rich drinking water to your
-                family everyday.
+              <p className="max-w-xl text-base leading-relaxed text-slate-500 sm:text-lg">
+                Advanced multi-stage RO technology engineered to eliminate 99% of impurities, 
+                delivering crisp, safe, and mineral-enriched drinking water directly to your 
+                family every single day.
               </p>
 
-              <div className="pt-4">
-                <button className="rounded-xl bg-[#22a5f1] px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-sky-500 shadow-md hover:shadow-lg">
+              {/* Call to Actions & Trust Indicators */}
+              <div className="pt-4 flex flex-col sm:flex-row sm:items-center gap-6">
+                <button className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#22a5f1] px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-sky-500 shadow-md hover:shadow-xl hover:shadow-sky-400/20 active:scale-[0.98]">
                   Explore Purifiers
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
+                
+                {/* Micro-Features */}
+                <div className="flex items-center gap-4 text-xs font-medium text-slate-600">
+                  <div className="flex items-center gap-1">
+                    <ShieldCheck className="h-4 w-4 text-emerald-500" />
+                    <span>99% Pure</span>
+                  </div>
+                  <div className="h-4 w-[1px] bg-slate-300" />
+                  <div className="flex items-center gap-1">
+                    <Droplet className="h-4 w-4 text-sky-500" />
+                    <span>Mineral Active</span>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Right Image Column */}
-            <div className="flex justify-center lg:col-span-5">
-              <div className="relative w-full max-w-[420px] transition-transform duration-300 hover:scale-105">
-                {/* Replace src with your actual image path */}
+            <div className="flex justify-center lg:col-span-5 relative">
+              {/* Glow backdrop behind image */}
+              <div className="absolute inset-0 m-auto h-72 w-72 rounded-full bg-gradient-to-tr from-sky-300/30 to-indigo-300/20 blur-3xl pointer-events-none" />
+              
+              <div className="relative w-full max-w-[380px] sm:max-w-[420px] transition-all duration-500 ">
                 <Image
-                  src="/water-filter.png"
-                  alt="Фильтр Профи Осмо 100"
+                  src={hero1}
+                  alt="Aquacarero Advanced RO Filter System"
                   width={450}
                   height={450}
                   priority
-                  className="h-auto w-full object-contain drop-shadow-2xl"
+                  className="h-auto w-full object-contain filter drop-shadow-[0_25px_25px_rgba(14,165,233,0.15)]"
                 />
               </div>
             </div>
           </div>
-
-          {/* Slider Pagination Dots */}
-          {/* <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center space-x-2.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#22a5f1]"></span>
-            <span className="h-2.5 w-2.5 rounded-full border border-[#22a5f1] bg-transparent"></span>
-            <span className="h-2.5 w-2.5 rounded-full border border-[#22a5f1] bg-transparent"></span>
-          </div> */}
         </div>
       </main>
     </div>
