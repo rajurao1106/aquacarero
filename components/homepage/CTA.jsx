@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { IoMail, IoCall } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa6";
 
@@ -17,67 +18,108 @@ export default function Consultation() {
     console.log("Form data submitted:", formData);
   };
 
+  // Container variant to stagger left side info elements
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  // Standard smooth slide-up for info items
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="w-full bg-[#f8fafc] py-20 px-4 sm:px-6 lg:px-8 font-sans antialiased text-[#1e293b]">
+    <section className="w-full bg-[#f8fafc] py-20 px-4 sm:px-6 lg:px-8 font-sans antialiased text-[#1e293b] overflow-hidden">
       <div className="mx-auto max-w-7xl grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+        
         {/* --- LEFT COLUMN: CONTENT COPY & INFO LINKING --- */}
-        <div className="space-y-8 lg:col-span-6 lg:pr-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="space-y-8 lg:col-span-6 lg:pr-8"
+        >
           <div className="space-y-4">
-            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
+            <motion.span variants={itemVariants} className="block text-xs font-bold uppercase tracking-widest text-gray-400">
               We&apos;re here to help you
-            </span>
-            <h2 className="text-4xl font-extrabold tracking-tight text-[#0f172a] sm:text-5xl leading-[1.15] max-w-md">
-              Discuss Your Chemical Solution Needs
-            </h2>
-            <p className="max-w-md text-sm leading-relaxed text-gray-4xl text-gray-500">
-              Are you looking for top-quality chemical solutions tailored to
-              your needs? Reach out to us.
-            </p>
+            </motion.span>
+            
+            <motion.h2 variants={itemVariants} className="text-4xl font-extrabold tracking-tight text-[#0f172a] sm:text-5xl leading-[1.15] max-w-md">
+              Discuss Your Product Solution Needs
+            </motion.h2>
+            
+            <motion.p variants={itemVariants} className="max-w-md text-sm leading-relaxed text-gray-5xl text-gray-500">
+              Are you looking for top-quality water purification and home appliance solutions tailored to your needs? Reach out to us.
+            </motion.p>
           </div>
 
           {/* Contact Methods List */}
           <div className="space-y-6 pt-4">
             {/* Email Row */}
-            <div className="flex items-center space-x-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#006fff] text-white shadow-md shadow-blue-500/10">
+            <motion.div variants={itemVariants} className="flex items-center space-x-4">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#006fff] text-white shadow-md shadow-blue-500/10"
+              >
                 <IoMail className="h-5 w-5" />
-              </div>
+              </motion.div>
               <div className="space-y-0.5 text-sm">
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">
                   E-mail
                 </p>
                 <a
-                  href="mailto:info@Aquacarero .com"
+                  href="mailto:info@Aquacarero.com"
                   className="font-semibold text-[#0f172a] hover:underline"
                 >
-                  info@Aquacarero .com
+                  info@Aquacarero.com
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Phone Row */}
-            <div className="flex items-center space-x-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#006fff] border border-gray-100 shadow-sm">
+            <motion.div variants={itemVariants} className="flex items-center space-x-4">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#006fff] border border-gray-100 shadow-sm"
+              >
                 <IoCall className="h-5 w-5" />
-              </div>
+              </motion.div>
               <div className="space-y-0.5 text-sm">
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">
                   Phone number
                 </p>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+917771967070"
                   className="font-semibold text-[#0f172a] hover:underline"
                 >
                   +91 777-1967-070
                 </a>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* --- RIGHT COLUMN: WHITE EMBEDDED CONTAINER CARD FORM --- */}
         <div className="lg:col-span-6">
-          <div className="rounded-[2rem] bg-white p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-gray-50">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ type: "spring", stiffness: 70, damping: 15 }}
+            className="rounded-[2rem] bg-white p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-gray-50"
+          >
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Input Name */}
               <div className="space-y-1.5">
@@ -113,10 +155,10 @@ export default function Consultation() {
                 />
               </div>
 
-              {/* Select Industry Dropdown */}
+              {/* Select Category Dropdown */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-gray-500 tracking-wide block">
-                  Industry
+                  Required Service
                 </label>
                 <select
                   value={formData.industry}
@@ -129,10 +171,10 @@ export default function Consultation() {
                   <option value="" disabled hidden>
                     Select...
                   </option>
-                  <option value="manufacturing">Water Purifier</option>
-                  <option value="pharmaceutical">Vaccum Cleaner</option>
-                  <option value="agriculture">Water Softner</option>
-                  <option value="research">Spare Parts</option>
+                  <option value="purifier">Water Purifier</option>
+                  <option value="vacuum">Vacuum Cleaner</option>
+                  <option value="softener">Water Softener</option>
+                  <option value="spare_parts">Spare Parts</option>
                 </select>
               </div>
 
@@ -155,19 +197,21 @@ export default function Consultation() {
 
               {/* Submit Capsule Button Layout */}
               <div className="pt-3">
-                <button
+                <motion.button
                   type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   className="flex items-center space-x-4 rounded-full bg-[#006fff] p-1.5 pr-6 text-sm font-semibold text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-600 hover:shadow-lg group"
                 >
-                  {/* Embedded White Circle with Arrow icon */}
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#006fff] transition-transform duration-300 group-hover:translate-x-0.5">
+                  {/* Embedded White Circle with Arrow icon shifting right on hover */}
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#006fff] transition-transform duration-300 group-hover:translate-x-1">
                     <FaArrowRight className="h-3.5 w-3.5" />
                   </div>
                   <span>Get a Solution</span>
-                </button>
+                </motion.button>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

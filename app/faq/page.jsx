@@ -6,8 +6,7 @@ import Services from '@/components/homepage/Services'
 export default function page() {
   return (
     <div>
-      <FAQ1/>
-       <Services/>
+     
       <FAQ/>
       <Consultation/>
     </div>

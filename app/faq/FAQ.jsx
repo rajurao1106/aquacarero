@@ -1,84 +1,92 @@
 "use client";
 
-import React, { useState } from "react";
-import { FaChevronDown, FaSearch, FaRegQuestionCircle } from "react-icons/fa";
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaChevronDown, FaSearch } from 'react-icons/fa';
 
 export default function FAQ() {
-  const [activeTab, setActiveTab] = useState("general");
+  const [activeTab, setActiveTab] = useState('general');
   const [openIndex, setOpenIndex] = useState(0); // First item open by default
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const tabs = [
-    { id: "general", name: "General Queries" },
-    { id: "technology", name: "Purification Technology" },
-    { id: "maintenance", name: "Filters & Maintenance" },
-    { id: "service", name: "Installation & Support" },
+    { id: 'general', name: 'General Queries' },
+    { id: 'delivery', name: 'Shipping & Delivery' },
+    { id: 'products', name: 'Water Filters & Maintenance' },
+    { id: 'orders', name: 'Orders & Returns' },
   ];
 
   const faqData = {
     general: [
       {
-        q: "What makes Aquacarero different from ordinary water filters?",
-        a: "Aquacarero uses advanced multi-stage RO + UV + UF purification combined with an Active Mineralizer. While regular filters only remove basic sediments, our systems eliminate microscopic contaminants and heavy metals while restoring essential minerals like Calcium and Magnesium for sweet, balanced water.",
+        q: "How does the water filtering system work?",
+        a: "Our advanced filtration systems pass water through multiple specialized stages—including sediment extraction, carbon blocks, and reverse osmosis membranes—to systematically strip away chlorine, heavy metals, rust, and bacteria, delivering pristine drinking water."
       },
       {
-        q: "Does this system work for high TDS groundwater or borewell water?",
-        a: "Yes, absolutely. Aquacarero heavy-duty RO membranes are specifically engineered to efficiently handle raw water with high TDS (Total Dissolved Solids) levels of up to 2000 ppm, turning brackish water into safe, crisp, and refreshing drinking water.",
+        q: "What payment methods do you accept?",
+        a: "We accept all major credit/debit cards, UPI, net banking options, and digital wallets. Cash on Delivery (COD) is also available depending on your service PIN location."
       },
       {
-        q: "What is the storage tank capacity and material?",
-        a: "Our premium residential models come with an 8-liter to 10-liter high-capacity storage tank made from food-grade, multi-layer ABS plastic to preserve hygiene and prevent any bacterial growth over long periods.",
-      },
+        q: "Can I install the filtration unit myself?",
+        a: "While our countertop and standard pitcher models require zero installation, complex under-sink reverse osmosis systems are best handled by our certified setup specialists to preserve your product warranty."
+      }
     ],
-    technology: [
+    delivery: [
       {
-        q: "How does the multi-stage purification shield work?",
-        a: "Water systematically passes through a Sediment Filter (removes mud/rust), a Pre-Carbon Block (removes chlorine/bad odor), the core RO Membrane (removes heavy metals/arsenic), and a post-UV chamber that completely deactivates invisible bacteria and viruses.",
+        q: "How long will it take to deliver my product?",
+        a: "Standard shipments take 3-5 business days. For major urban regions and local hub areas, express next-day delivery options can be selected during checkouts."
       },
       {
-        q: "What does the Copper + Alkaline filter do?",
-        a: "The Alkaline cartridge balances the pH level of purified water to keep it optimally alkaline, while the active copper technology infuses trace copper ions into the water to boost immunity and improve digestive system health.",
-      },
+        q: "Do you offer free delivery and setup?",
+        a: "Yes! All premium multi-stage filtration plants and residential reverse osmosis setups include completely free doorstep delivery and professional technician installation parameters."
+      }
     ],
-    maintenance: [
+    products: [
       {
-        q: "How frequently do I need to replace the filter cartridges?",
-        a: "Sediment and pre-carbon filters are typically replaced every 6 months to maintain optimum flow rate. The core RO membrane and UV setup last around 12 to 18 months, depending on your daily consumption volume and raw water conditions.",
+        q: "When should I replace my filter cartridges?",
+        a: "Typically, sediment and pre-carbon cartridges require swaps every 6 months, while the core reverse osmosis membranes last up to 12–18 months depending on local raw water TDS metrics."
       },
       {
-        q: "How can I monitor the live water quality at home?",
-        a: "Our smart purifiers feature a built-in digital LED dashboard panel that provides a live display of output TDS levels, filter life indicators, and real-time alerts if a cartridge needs a scheduled replacement.",
-      },
+        q: "How can I check the clean water quality at home?",
+        a: "Many of our intelligent purification systems feature built-in electronic TDS monitors on the UI dashboard panels. Alternatively, you can use a portable digital TDS tester pen."
+      }
     ],
-    service: [
+    orders: [
       {
-        q: "Are installation and product delivery free?",
-        a: "Yes! Every purchase of a Aquacarero RO system includes completely free doorstep delivery and professional technician installation. Our service specialist will also test your raw water TDS and set up the system parameters perfectly.",
-      },
-      {
-        q: "What is covered under the Aquacarero warranty framework?",
-        a: "We provide a comprehensive 1-Year Comprehensive Warranty that covers all electronic parts, including the high-pressure pump, SMPS power adapter, UV barrel, and electronic control circuits against any structural manufacturing defects.",
-      },
-    ],
+        q: "What is your return policy window?",
+        a: "We offer a hassle-free 14-day return window for unopened, unused equipment packages preserved carefully inside their original manufacturer boxes."
+      }
+    ]
   };
 
-  // Toggle active accordion
+  // Automatically reset open index when switching filter tabs
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    setOpenIndex(0);
+  };
+
+  // Toggle active accordion element
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // Filter questions based on search input query
-  const currentQuestions = faqData[activeTab].filter(
-    (item) =>
-      item.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.a.toLowerCase().includes(searchQuery.toLowerCase()),
+  // Filter questions based on query inputs
+  const currentQuestions = faqData[activeTab].filter(item =>
+    item.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.a.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans antialiased text-[#222222]">
+      
       {/* --- TOP BANNER / SEARCH BAR --- */}
       <div className="bg-gradient-to-b from-sky-50 via-sky-50/40 to-[#f8fafc] py-20 text-center px-4">
-        <div className="mx-auto max-w-3xl space-y-4">
+        <motion.div 
+          initial={{ opacity: 0, y: -15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-3xl space-y-4"
+        >
           <span className="text-xs font-bold uppercase tracking-widest text-[#00c4ff]">
             Help Center
           </span>
@@ -86,92 +94,129 @@ export default function FAQ() {
             Frequently Asked Questions
           </h1>
           <p className="text-sm text-gray-500 max-w-md mx-auto">
-            Got questions about Aquacarero technology, regular filter
-            replacements, or installation? Find answers below.
+            Have questions about systems, deliveries, or filter maintenance? Find your quick answers below.
           </p>
 
-       
-        </div>
+          {/* Interactive Dynamic Search Input Bar */}
+          <div className="relative max-w-md mx-auto mt-6">
+            <input 
+              type="text"
+              placeholder="Search legal queries, keywords..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-5 py-3 pl-12 rounded-full bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-300 shadow-sm transition-all text-sm"
+            />
+            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm" />
+          </div>
+        </motion.div>
       </div>
 
       {/* --- CORE CONTENT NAVIGATION GRID --- */}
-      <main className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 items-start">
-          {/* LEFT SIDEBAR: Nav Toggles */}
-          <div className="lg:col-span-4 space-y-2 lg:sticky lg:top-8">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => {
-                  setActiveTab(tab.id);
-                  setOpenIndex(0); // Reset accordion tracking to top item on tab change
-                }}
-                className={`w-full flex items-center justify-between px-6 py-4 rounded-2xl font-semibold text-sm transition-all text-left ${
-                  activeTab === tab.id
-                    ? "bg-white text-[#00c4ff] shadow-sm border border-sky-100/50"
-                    : "bg-transparent text-gray-500 hover:bg-gray-100 hover:text-slate-800"
-                }`}
-              >
-                <div className="flex items-center space-x-3">
-                  <FaRegQuestionCircle className="h-4 w-4 shrink-0" />
-                  <span>{tab.name}</span>
-                </div>
-                <span
-                  className={`h-2 w-2 rounded-full bg-[#00c4ff] transition-transform ${activeTab === tab.id ? "scale-100" : "scale-0"}`}
-                />
-              </button>
-            ))}
+      <main className="mx-auto max-w-5xl px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* LEFT SIDE: Navigation Filter Tabs Module */}
+          <div className="lg:col-span-4 flex flex-row lg:flex-col gap-2 overflow-x-auto pb-3 lg:pb-0 scrollbar-none shrink-0">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => handleTabChange(tab.id)}
+                  className={`relative px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap text-left w-full ${
+                    isActive 
+                      ? 'text-sky-600 shadow-sm border border-sky-100' 
+                      : 'text-slate-500 hover:bg-slate-100/70 border border-transparent'
+                  }`}
+                >
+                  {/* Shared background layout slider highlight */}
+                  {isActive && (
+                    <motion.div 
+                      layoutId="activeTabIndicator"
+                      className="absolute inset-0 bg-sky-50 rounded-xl -z-10"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  {tab.name}
+                </button>
+              );
+            })}
           </div>
 
-          {/* RIGHT COLUMN: Smooth Accordion Layout list */}
+          {/* RIGHT SIDE: Smooth Accordion Layout List Area */}
           <div className="lg:col-span-8 space-y-4">
-            {currentQuestions.length > 0 ? (
-              currentQuestions.map((item, idx) => {
-                const isCurrentOpen = openIndex === idx;
-                return (
-                  <div
-                    key={idx}
-                    className="overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all duration-200"
-                  >
-                    {/* Header Trigger bar */}
-                    <button
-                      onClick={() => toggleAccordion(idx)}
-                      className="flex w-full items-center justify-between p-6 text-left transition-colors hover:bg-slate-50/60"
-                    >
-                      <span className="text-base font-bold text-[#1e2e4d] pr-4">
-                        {item.q}
-                      </span>
-                      <span
-                        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-50 text-slate-500 transition-transform duration-300 ${isCurrentOpen ? "rotate-180 bg-sky-50 text-[#00c4ff]" : ""}`}
+            <AnimatePresence mode="wait">
+              {currentQuestions.length > 0 ? (
+                <motion.div
+                  key={activeTab + searchQuery} // key switch resets view wrapper transitions cleanly
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-4"
+                >
+                  {currentQuestions.map((item, idx) => {
+                    const isCurrentOpen = openIndex === idx;
+                    return (
+                      <div 
+                        key={idx}
+                        className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm"
                       >
-                        <FaChevronDown className="h-3 w-3" />
-                      </span>
-                    </button>
+                        {/* Header Trigger bar */}
+                        <button
+                          onClick={() => toggleAccordion(idx)}
+                          className="flex w-full items-center justify-between p-6 text-left transition-colors hover:bg-slate-50/40"
+                        >
+                          <span className="text-base font-bold text-[#1e2e4d] pr-4">
+                            {item.q}
+                          </span>
+                          <motion.span 
+                            animate={{ rotate: isCurrentOpen ? 180 : 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-50 text-slate-500 ${
+                              isCurrentOpen ? 'bg-sky-50 !text-[#00c4ff]' : ''
+                            }`}
+                          >
+                            <FaChevronDown className="h-3 w-3" />
+                          </motion.span>
+                        </button>
 
-                    {/* Content Panel Box */}
-                    <div
-                      className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                        isCurrentOpen
-                          ? "max-h-[500px] border-t border-gray-50"
-                          : "max-h-0"
-                      }`}
-                    >
-                      <p className="p-6 text-sm leading-relaxed text-gray-500 bg-white">
-                        {item.a}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })
-            ) : (
-              // Empty search configuration state fallback
-              <div className="text-center py-16 rounded-3xl bg-white border border-dashed border-gray-200">
-                <p className="text-sm font-medium text-gray-400">
-                  No results found matching your purification keywords.
-                </p>
-              </div>
-            )}
+                        {/* Content Panel Box using height animations */}
+                        <AnimatePresence initial={false}>
+                          {isCurrentOpen && (
+                            <motion.div 
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3, ease: "easeInOut" }}
+                              className="border-t border-gray-50 overflow-hidden bg-white"
+                            >
+                              <p className="p-6 text-sm leading-relaxed text-gray-500">
+                                {item.a}
+                              </p>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </motion.div>
+              ) : (
+                /* Empty search fallback wrapper panel */
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="text-center py-16 rounded-3xl bg-white border border-dashed border-gray-200"
+                >
+                  <p className="text-sm font-medium text-gray-400">
+                    No results found matching your search term.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
+
         </div>
       </main>
     </div>

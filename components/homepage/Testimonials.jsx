@@ -1,5 +1,8 @@
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export default function Testimonials() {
   const testimonials = [
@@ -7,27 +10,48 @@ export default function Testimonials() {
       id: 1,
       name: 'Joew Harbert',
       role: 'CEO, NoonBrew',
-      avatar: '/avatars/joew.jpg', // Replace with your image path
+      avatar: '/avatars/joew.jpg',
       text: '“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut aliqua.”',
     },
     {
       id: 2,
       name: 'Mila McSabbu',
       role: 'Marketing & Office Coordinator',
-      avatar: '/avatars/mila.jpg', // Replace with your image path
+      avatar: '/avatars/mila.jpg',
       text: '“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut aliqua.”',
     },
     {
       id: 3,
       name: 'Robert Fox',
       role: 'Owner, Beards of Brothers',
-      avatar: '/avatars/robert.jpg', // Replace with your image path
+      avatar: '/avatars/robert.jpg',
       text: '“Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut aliqua.”',
     },
   ];
 
+  // Grid container to manage sequential child animation loading
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  // Card reveal parameters
+  const cardVariants = {
+    hidden: { opacity: 0, y: 25 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="relative w-full bg-white py-12">
+    <section className="relative w-full bg-white py-12 overflow-hidden">
       
       {/* --- TOP OCEAN WAVE SHAPE --- */}
       <div className="absolute top-0 left-0 right-0 w-full overflow-hidden rotate-180 leading-[0]">
@@ -41,26 +65,47 @@ export default function Testimonials() {
         <div className="mx-auto max-w-7xl">
           
           {/* Section Header */}
-          <div className="mx-auto max-w-3xl text-center mb-16 space-y-2">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto max-w-3xl text-center mb-16 space-y-2"
+          >
             <span className="text-xs font-bold uppercase tracking-widest text-[#00c4ff]">
               Our Clients
             </span>
             <h2 className="text-3xl font-extrabold tracking-tight text-[#1e2e4d] sm:text-4xl">
               Our Testimonials
             </h2>
-          </div>
+          </motion.div>
 
           {/* Testimonial Cards Grid */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          >
             {testimonials.map((item) => (
-              <div 
+              <motion.div 
                 key={item.id} 
-                className="relative flex flex-col justify-between rounded-2xl bg-white p-8 shadow-[0_10px_30px_rgba(0,0,0,0.03)] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                variants={cardVariants}
+                whileHover={{ y: -6, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.05)" }}
+                transition={{ type: "tween", ease: "easeOut", duration: 0.25 }}
+                className="relative flex flex-col justify-between rounded-2xl bg-white p-8 shadow-[0_10px_30px_rgba(0,0,0,0.03)]"
               >
                 {/* Decorative Giant Quote Asset */}
-                <div className="absolute top-4 left-6 pointer-events-none select-none text-[80px] font-serif font-black leading-none text-slate-100/70">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.6 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                  className="absolute top-4 left-6 pointer-events-none select-none text-[80px] font-serif font-black leading-none text-slate-100/70"
+                >
                   99
-                </div>
+                </motion.div>
 
                 {/* Testimonial Core Copy */}
                 <div className="relative z-10 pt-4 pb-8">
@@ -88,9 +133,9 @@ export default function Testimonials() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Slider Pagination Controls */}
           <div className="mt-12 flex items-center justify-center space-x-2">

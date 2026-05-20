@@ -1,35 +1,83 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
-import about1 from "@/public/about/about1.png"
-export default function About() {
-  return (
-    <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 bg-white font-sans antialiased text-slate-800">
-      <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
-        {/* --- LEFT COLUMN: COMPANY MAIN PROFILE INFO & BLOCKS --- */}
-        <div className="space-y-6 lg:col-span-7">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#0ea5e9]">
-            About Company
-          </span>
+import { motion } from "framer-motion";
+import about1 from "@/public/about/about1.png";
 
-          <h2 className="text-4xl font-serif font-bold tracking-tight text-slate-900 sm:text-5xl leading-[1.15]">
+export default function About() {
+  // Container variant to stagger the primary text copy and narrative blocks
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  // Smooth slide-up for textual elements
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  return (
+    <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 bg-white font-sans antialiased text-slate-800 overflow-hidden">
+      <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
+        
+        {/* --- LEFT COLUMN: COMPANY MAIN PROFILE INFO & BLOCKS --- */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="space-y-6 lg:col-span-7"
+        >
+          <motion.span 
+            variants={itemVariants} 
+            className="block text-xs font-bold uppercase tracking-widest text-[#0ea5e9]"
+          >
+            About Company
+          </motion.span>
+
+          <motion.h2 
+            variants={itemVariants} 
+            className="text-4xl font-serif font-bold tracking-tight text-slate-900 sm:text-5xl leading-[1.15]"
+          >
             Pioneering Pure Water <br />
             For Homes & Businesses.
-          </h2>
+          </motion.h2>
 
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 pt-2">
+          <motion.h3 
+            variants={itemVariants} 
+            className="text-xs font-bold uppercase tracking-wider text-slate-400 pt-2"
+          >
             Aquacarero — Pure Water, Healthy Life
-          </h3>
+          </motion.h3>
 
-          <p className="max-w-2xl text-base leading-relaxed text-gray-500">
+          <motion.p 
+            variants={itemVariants} 
+            className="max-w-2xl text-base leading-relaxed text-gray-500"
+          >
             For years, Aquacarero has been at the forefront of advanced water
             purification technology. We engineer state-of-the-art RO, UV, and UF
             systems that don&apos;t just filter water, but completely eliminate
             deep-seated heavy metals, harsh industrial pollutants, and
             disease-causing pathogens to protect your well-being.
-          </p>
+          </motion.p>
 
           {/* --- NEW SECTION: OUR STORY & OUR MISSION BELOW DESCRIPTION (WITHOUT ICONS) --- */}
-          <div className="grid grid-cols-1 gap-6 pt-6 sm:grid-cols-2 border-t border-gray-100">
+          <motion.div 
+            variants={itemVariants}
+            className="grid grid-cols-1 gap-6 pt-6 sm:grid-cols-2 border-t border-gray-100"
+          >
             {/* Our Story Block */}
             <div className="space-y-2">
               <h4 className="text-lg font-serif font-bold tracking-tight text-slate-900">
@@ -55,21 +103,31 @@ export default function About() {
                 and maintenance.
               </p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* --- RIGHT COLUMN: LARGE IMAGE SECTION --- */}
-        <div className="lg:col-span-5">
-          <div className="relative h-[450px] sm:h-[500px] w-full overflow-hidden rounded-2xl shadow-lg">
+        <motion.div 
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+          className="lg:col-span-5"
+        >
+          <motion.div 
+            whileHover={{ scale: 1.015 }}
+            transition={{ duration: 0.3 }}
+            className="relative h-[450px] sm:h-[500px] w-full overflow-hidden rounded-2xl shadow-lg"
+          >
             <Image
-              src={about1} // Replace with your corporate setup or premium filter asset
+              src={about1}
               alt="Aquacarero RO laboratory and product design engineering showcase"
               fill
               className="object-cover"
               priority
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
