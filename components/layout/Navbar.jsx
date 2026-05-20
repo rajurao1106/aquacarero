@@ -1,76 +1,258 @@
-import React from "react";
-import { FaSearch, FaRegUser } from "react-icons/fa";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { FaPhoneAlt, FaChevronDown, FaTimes } from "react-icons/fa";
 
 export default function Navbar() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    service: "Water Purifier",
+    message: ""
+  });
+
+  // Close modal on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setIsModalOpen(false);
+    };
+    if (isModalOpen) window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen]);
+
+  const services = [
+    { name: "Water Purifier", href: "/services/water-purifier" },
+    { name: "Vaccum Cleaner", href: "/services/vaccum-cleaner" },
+    { name: "Water Softner", href: "/services/water-softner" },
+    { name: "Spare Parts", href: "/services/spare-parts" },
+  ];
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log("Enquiry Submitted:", formData);
+    alert("Thank you! Your quote request has been received. Our team will call you back shortly.");
+    setIsModalOpen(false);
+    setFormData({ name: "", phone: "", service: "Water Purifier", message: "" });
+  };
+
   return (
-    <nav className=" fixed z-50 bg-white w-full flex justify-center items-center">
-      <header className=" w-full max-w-7xl px-4 sm:px-6 lg:px-8 ">
-        <div className="flex h-20 items-center justify-between border-b border-gray-100">
-          {/* Logo */}
-          <div className="flex flex-col">
-            <span className="text-2xl font-black tracking-tight text-[#0b2f61]">
-              AquacareRO
-            </span>
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white w-full flex justify-center items-center shadow-sm">
+        <header className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-20 items-center justify-between border-b border-gray-100">
+            {/* Logo */}
+            <div className="flex flex-col">
+              <a
+                href="/"
+                className="text-2xl font-black tracking-tight text-sky-600"
+              >
+                Aquacarero
+              </a>
+            </div>
+
+            {/* Navigation Links */}
+            <nav className="hidden space-x-8 md:flex items-center">
+              <a
+                href="/"
+                className="text-sm font-medium transition-colors hover:text-sky-500"
+              >
+                Home
+              </a>
+              <a
+                href="/about"
+                className="text-sm font-medium transition-colors hover:text-sky-500"
+              >
+                About Us
+              </a>
+
+              {/* Services Dropdown Trigger */}
+              <div
+                className="relative"
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
+              >
+                <a
+                  href="/services"
+                  className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-sky-500 py-2"
+                >
+                  Our Services
+                  <FaChevronDown
+                    className={`h-3 w-3 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
+                  />
+                </a>
+
+                {/* Dropdown Menu */}
+                {isDropdownOpen && (
+                  <div className="absolute left-0 mt-0 w-56 rounded-xl bg-white border border-gray-100 shadow-xl py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                    {services.map((service, index) => (
+                      <a
+                        key={index}
+                        href={service.href}
+                        className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-sky-50 hover:text-sky-600 transition-colors"
+                      >
+                        {service.name}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <a
+                href="/faq"
+                className="text-sm font-medium transition-colors hover:text-sky-500"
+              >
+                FAQ
+              </a>
+              <a
+                href="/contact"
+                className="text-sm font-medium transition-colors hover:text-sky-500"
+              >
+                Contact Us
+              </a>
+            </nav>
+
+            {/* Header Actions */}
+            <div className="flex items-center space-x-6">
+              {/* Clickable Call Icon & Number Wrap */}
+              <a 
+                href="tel:+917771967070" 
+                className="flex items-center space-x-2 text-gray-700 hover:text-sky-600 transition-colors group"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-50 border border-sky-100 text-[#22a5f1] transition-colors group-hover:bg-[#22a5f1] group-hover:text-white">
+                  <FaPhoneAlt className="h-4 w-4" />
+                </div>
+                <div className="hidden flex-col text-left xl:flex">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400 leading-none">Call Support</span>
+                  <span className="text-sm font-bold text-[#1e2e4d] pt-0.5">+91 77719-67070</span>
+                </div>
+              </a>
+
+              {/* Get Quote Trigger Button */}
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="hidden rounded-md bg-[#22a5f1] px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-sky-500 sm:block shadow-sm active:scale-95"
+              >
+                Get Quote
+              </button>
+            </div>
           </div>
+        </header>
+      </nav>
 
-          {/* Navigation Links */}
-          <nav className="hidden space-x-8 md:flex">
-            <a
-              href="#"
-              className="text-sm font-medium transition-colors hover:text-sky-500"
+      {/* --- BACKDROP MODAL OVERLAY --- */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setIsModalOpen(false)}
+        >
+          {/* Modal Container */}
+          <div 
+            className="relative w-full max-w-md transform overflow-hidden rounded-3xl bg-white p-8 shadow-2xl transition-all border border-gray-100 animate-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button top corner */}
+            <button 
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-5 right-5 flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
+              aria-label="Close form"
             >
-              Home{" "}
-            </a>
-            <a
-              href="#"
-              className="text-sm font-medium transition-colors hover:text-sky-500"
-            >
-              About Us{" "}
-            </a>
-            <a
-              href="#"
-              className="text-sm font-medium transition-colors hover:text-sky-500"
-            >
-              Our Services
-            </a>
-            <a
-              href="#"
-              className="text-sm font-medium transition-colors hover:text-sky-500"
-            >
-              FAQ{" "}
-            </a>
-            <a
-              href="#"
-              className="text-sm font-medium transition-colors hover:text-sky-500"
-            >
-              Contact Us
-            </a>
-          </nav>
-
-          {/* Header Actions */}
-          <div className="flex items-center space-x-4">
-            <button className="hidden rounded-xl bg-[#22a5f1] px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-sky-500 sm:block shadow-sm">
-              Заказать звонок
+              <FaTimes className="h-4 w-4" />
             </button>
 
-            {/* Search Icon Button */}
-            <button
-              className="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-50 border border-gray-100 text-gray-600 transition-colors hover:bg-gray-100"
-              aria-label="Search"
-            >
-              <FaSearch className="h-4 w-4" />
-            </button>
+            {/* Form Headers */}
+            <div className="mb-6 space-y-1">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#22a5f1]">
+                Quick Enquiry
+              </span>
+              <h3 className="text-2xl font-extrabold tracking-tight text-[#1e2e4d]">
+                Request a Free Quote
+              </h3>
+              <p className="text-xs text-gray-400">
+                Fill the details below. Our field expert will call you back within 15 minutes.
+              </p>
+            </div>
 
-            {/* User Profile Button */}
-            <button
-              className="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-50 border border-gray-100 text-gray-600 transition-colors hover:bg-gray-100"
-              aria-label="User profile"
-            >
-              <FaRegUser className="h-4 w-4" />
-            </button>
+            {/* Interactive Quote Form */}
+            <form onSubmit={handleFormSubmit} className="space-y-4">
+              {/* Full Name Input */}
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold uppercase tracking-wide text-gray-500 block">
+                  Your Full Name
+                </label>
+                <input 
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="John Doe"
+                  className="w-full rounded-xl bg-slate-50 border border-gray-100 px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-sky-300 focus:bg-white"
+                />
+              </div>
+
+              {/* Contact Phone Number Input */}
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold uppercase tracking-wide text-gray-500 block">
+                  Phone Number
+                </label>
+                <input 
+                  type="tel"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="98765 XXXXX"
+                  className="w-full rounded-xl bg-slate-50 border border-gray-100 px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-sky-300 focus:bg-white"
+                />
+              </div>
+
+              {/* Service Selection Dropdown */}
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold uppercase tracking-wide text-gray-500 block">
+                  Select Service
+                </label>
+                <div className="relative">
+                  <select
+                    value={formData.service}
+                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    className="w-full appearance-none rounded-xl bg-slate-50 border border-gray-100 px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-sky-300 focus:bg-white cursor-pointer"
+                  >
+                    <option value="Water Purifier">Water Purifier (RO Installation/Service)</option>
+                    <option value="Vaccum Cleaner">Vacuum Cleaner Repair</option>
+                    <option value="Water Softner">Water Softener Plant Setup</option>
+                    <option value="Spare Parts">Spare Parts / Filter Cartridges</option>
+                  </select>
+                  <FaChevronDown className="pointer-events-none absolute top-4 right-4 h-3 w-3 text-gray-400" />
+                </div>
+              </div>
+
+              {/* Additional Notes text box */}
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold uppercase tracking-wide text-gray-500 block">
+                  Additional Notes (Optional)
+                </label>
+                <textarea 
+                  rows={2}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="E.g., High TDS problem, looking for alkaline filter..."
+                  className="w-full rounded-xl bg-slate-50 border border-gray-100 px-4 py-3 text-sm text-slate-800 outline-none transition-all focus:border-sky-300 focus:bg-white resize-none placeholder:text-gray-300"
+                />
+              </div>
+
+              {/* Submit Buttons Actions */}
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  className="w-full rounded-xl bg-[#22a5f1] py-3.5 text-center text-sm font-bold text-white shadow-md transition-all hover:bg-sky-500 hover:shadow-lg active:scale-[0.98]"
+                >
+                  Submit Quote Request
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-      </header>
-    </nav>
+      )}
+    </>
   );
 }

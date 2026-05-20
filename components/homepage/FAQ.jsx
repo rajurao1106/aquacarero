@@ -85,25 +85,13 @@ export default function FAQ() {
             Have questions about systems, deliveries, or filter maintenance? Find your quick answers below.
           </p>
 
-          {/* Search Bar Wrap */}
-          <div className="pt-6 max-w-xl mx-auto">
-            <div className="flex items-center rounded-full bg-white px-5 py-3.5 shadow-sm border border-gray-100 transition-all focus-within:shadow-md focus-within:border-sky-200">
-              <FaSearch className="text-gray-400 shrink-0 mr-3 h-4 w-4" />
-              <input 
-                type="text"
-                placeholder="Search keywords or specific questions..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent text-sm text-slate-800 outline-none placeholder:text-gray-400"
-              />
-            </div>
-          </div>
+        
         </div>
       </div>
 
       {/* --- CORE CONTENT NAVIGATION GRID --- */}
-      <main className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 items-start">
+      <main className="mx-auto max-w-4xl px-4 pb-24 sm:px-6 lg:px-8">
+        <div className=" gap-10 lg:grid-cols-12 items-start">
 
 
           {/* RIGHT COLUMN: Smooth Accordion Layout list */}

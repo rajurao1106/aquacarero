@@ -12,7 +12,7 @@ export default function Stats() {
     {
       id: 1,
       value: '6.8K',
-      label: 'BOTTLED DELIVERED',
+      label: 'TANK DELIVERED',
       Icon: LuGlassWater,
     },
     {
@@ -40,7 +40,7 @@ export default function Stats() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* --- MAIN CORE BLUE PANEL BAR --- */}
-        <div className="rounded-2xl lg:rounded-none bg-[#004fb0] grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-2 sm:divide-y-0 sm:gap-y-12 lg:grid-cols-4 lg:divide-x lg:divide-y-0 lg:divide-white/15 shadow-xl">
+        <div className="rounded-xl bg-[#004fb0] grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-2 sm:divide-y-0 sm:gap-y-12 lg:grid-cols-4 lg:divide-x lg:divide-y-0 lg:divide-white/15 shadow-2xl">
           
           {stats.map((stat) => {
             const CustomIcon = stat.Icon;

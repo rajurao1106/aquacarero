@@ -13,14 +13,14 @@ export default function page() {
   return (
     <div>
       <Hero />
+       <Stats />
       <About />
-      <Stats />
       <Services />
       <Features />
       <WhyChoose />
       <Testimonials />
-      <Consultation />
       <FAQ />
+      <Consultation />
     </div>
   );
 }
