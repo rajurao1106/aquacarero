@@ -237,7 +237,7 @@ export default function WaterSoftner() {
                   {/* Product Copy Specifications Wrapper */}
                   <div className="space-y-2 flex-1 flex flex-col justify-between">
                     <div className="space-y-1.5">
-                      <h2 className="text-sm font-bold tracking-tight text-slate-900 leading-snug">
+                      <h2 className="text-sm font-sans  font-semibold tracking-tight text-slate-900 leading-snug">
                         {product.name}
                       </h2>
                       <p className="text-[11px] leading-relaxed text-gray-400 line-clamp-3">
@@ -247,9 +247,9 @@ export default function WaterSoftner() {
 
                     {/* Pricing Matrix Labels Frame */}
                     <div className="pt-3 pb-4 space-y-0.5">
-                      <div className="text-xs text-slate-900 font-medium">
+                      <div className="text-xs font-serif text-slate-900 font-medium">
                         Best Price :{" "}
-                        <span className="font-extrabold">
+                        <span className="font-sans font-bold">
                           ₹ {product.bestPrice.toLocaleString("en-IN")}.00
                         </span>
                       </div>

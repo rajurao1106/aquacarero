@@ -41,7 +41,7 @@ export default function Navbar() {
 
   const services = [
     { name: "Water Purifier", href: "/services/water-purifier" },
-    { name: "Vacuum Cleaner", href: "/services/vaccum-cleaner" },
+    { name: "Vaccum Cleaner", href: "/services/vaccum-cleaner" },
     { name: "Water Softener", href: "/services/water-softner" },
     { name: "Spare Parts", href: "/services/spare-parts" },
   ];
