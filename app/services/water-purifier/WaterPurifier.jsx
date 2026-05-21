@@ -8,6 +8,7 @@ import water_purifier3 from "@/public/water purifier/water-purifier3.webp";
 import water_purifier4 from "@/public/water purifier/water-purifier4.webp";
 import water_purifier5 from "@/public/water purifier/water-purifier5.webp";
 import water_purifier6 from "@/public/water purifier/water-purifier6.jpg";
+import water_purifier from "@/public/water purifier/water-purifier.jpg";
 import water_purifier7 from "@/public/water purifier/water-purifier7.jpg";
 import water_purifier8 from "@/public/water purifier/water-purifier8.jpg";
 import water_purifier9 from "@/public/water purifier/water-purifier9.jpg";
@@ -81,13 +82,13 @@ const INITIAL_PRODUCTS = [
   },
   {
     id: 6,
-    name: "Simflo 25LTR Commercial Water Purifier | RO+TDS Control+Copper",
+    name: "Excellent | RO+UV+UF+TDS Control |7 stage filtration |12 ltr storage | White",
     description:
-      "High-capacity 25-liter commercial water purifier engineered with high-output RO technology, an active Copper filter, and precision TDS control for offices and small businesses.",
+      "Multiple purification by RO+UF process which removes even dissolved impurities such as chemicals, bacteria, viruses, and salts making water 100% pure and suitable for drinking.",
     bestPrice: 25500,
     mrp: 28000,
     discount: "Save 21%",
-    image: water_purifier6,
+    image: water_purifier,
     color: "Black",
     popularity: 4,
     isSoldOut: false,
