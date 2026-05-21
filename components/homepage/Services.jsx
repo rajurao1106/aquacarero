@@ -18,14 +18,14 @@ export default function Services() {
       slug: "/services/water-purifier",
       description:
         "Advanced multi-stage reverse osmosis systems that eliminate 99% of contaminants, heavy metals, and chemicals while maintaining essential pure hydration.",
-      image: service1,
+      image: service3,
       tag: "Most Popular",
       icon: <Droplets className="h-4 w-4 text-[#22a5f1]" />,
     },
     {
       id: 2,
       title: "Vacuum Cleaner",
-      slug: "/services/vacuum-cleaner",
+      slug: "/services/vaccum-cleaner",
       description:
         "High-efficiency, deep-cleaning vacuum systems equipped with advanced filtration to effortlessly eliminate dust, allergens, and pet dander from every corner of your home.",
       image: service2,
@@ -35,10 +35,10 @@ export default function Services() {
     {
       id: 3,
       title: "Water Softener",
-      slug: "/services/water-softener",
+      slug: "/services/water-softner",
       description:
         "Premium hard water conditioning systems designed to eliminate scale buildup, protect your plumbing appliances, and ensure gentler water for your skin and hair.",
-      image: service3,
+      image: service4,
       tag: "Home Protection",
       icon: <ShieldCheck className="h-4 w-4 text-[#22a5f1]" />,
     },
@@ -48,7 +48,7 @@ export default function Services() {
       slug: "/services/spare-parts",
       description:
         "Keep your appliances running at peak performance with genuine, high-quality replacement membranes, filters, motors, and certified structural components.",
-      image: service4,
+      image: service1,
       tag: "100% Genuine",
       icon: <Wrench className="h-4 w-4 text-[#22a5f1]" />,
     },
