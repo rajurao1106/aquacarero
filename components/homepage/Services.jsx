@@ -7,7 +7,7 @@ import { ArrowRight, Droplets, ShieldCheck, Wrench, Sparkles } from "lucide-reac
 import { motion } from "framer-motion";
 import service1 from "@/public/spare parts/spare-parts2.jpg";
 import service2 from "@/public/vaccum cleaner/vaccum-cleaner2.webp";
-import service3 from "@/public/water purifier/water-purifier1.jpg";
+import service3 from "@/public/water purifier/water-purifier1.webp";
 import service4 from "@/public/water softner/water-softner1.webp";
 
 export default function Services() {

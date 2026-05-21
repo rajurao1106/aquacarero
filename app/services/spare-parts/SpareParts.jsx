@@ -5,6 +5,9 @@ import spare_parts1 from "@/public/spare parts/spare-parts1.webp";
 import spare_parts2 from "@/public/spare parts/spare-parts2.jpg";
 import spare_parts3 from "@/public/spare parts/spare-parts3.jpg";
 import spare_parts4 from "@/public/spare parts/spare-parts4.webp";
+import spare_parts5 from "@/public/spare parts/spare-parts5.webp";
+import spare_parts6 from "@/public/spare parts/spare-parts6.webp";
+
 import Image from "next/image";
 
 // Mock Data strictly following the layout style and parameters in the image
@@ -61,6 +64,33 @@ const INITIAL_PRODUCTS = [
     popularity: 4.1,
     isSoldOut: true,
   },
+  {
+    id: 8,
+    name: "Aqua Ultra Heavy Duty RO Booster Pump (100 GPD)",
+    description:
+      "High-pressure reverse osmosis booster pump designed for reliable water flow, low noise operation, and optimal performance in domestic RO systems.",
+    bestPrice: 1850,
+    mrp: 3200,
+    discount: "Save 42%",
+    image: spare_parts5,
+    color: "Silver & Black",
+    popularity: 4.5,
+    isSoldOut: false,
+  },
+  {
+    id: 9,
+    name: "Traditional Pure Copper Water Dispenser Storage Tank",
+    description:
+      "Authentic handmade copper water vessel with a brass tap, designed to naturally purify water, boost immunity, and provide Ayurvedic health benefits.",
+    bestPrice: 2499,
+    mrp: 4500,
+    discount: "Save 44%",
+    image: spare_parts6,
+    color: "Copper/Bronze",
+    popularity: 4.1,
+    isSoldOut: true,
+  },
+  
 ];
 
 export default function SpareParts() {
@@ -283,14 +313,14 @@ export default function SpareParts() {
                     </div>
 
                     {/* Pricing Matrix Labels Frame */}
-                    {/* <div className="pt-3 pb-4 space-y-0.5">
+                    <div className="pt-3 pb-4 space-y-0.5">
                       <div className="text-xs text-slate-900 font-medium">
                         Best Price :{" "}
                         <span className="font-extrabold">
                           ₹ {product.bestPrice.toLocaleString("en-IN")}.00
                         </span>
                       </div>
-                    </div> */}
+                    </div>
 
                     {/* Footer Trigger Operations Buttons Panel row */}
                     <div className="grid grid-cols-1 gap-2.5 pt-1">

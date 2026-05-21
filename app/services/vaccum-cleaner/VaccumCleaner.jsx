@@ -255,14 +255,14 @@ export default function VaccumCleaner() {
                     </div>
 
                     {/* Pricing Matrix Labels Frame */}
-                    {/* <div className="pt-3 pb-4 space-y-0.5">
+                    <div className="pt-3 pb-4 space-y-0.5">
                       <div className="text-xs text-slate-900 font-medium">
                         Best Price :{" "}
                         <span className="font-extrabold">
                           ₹ {product.bestPrice.toLocaleString("en-IN")}.00
                         </span>
                       </div>
-                    </div> */}
+                    </div>
 
                     {/* Footer Trigger Operations Buttons Panel row */}
                     <div className="grid grid-cols-1 gap-2.5 pt-1">

@@ -2,33 +2,131 @@
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-import water_purifier1 from "@/public/water purifier/water-purifier1.jpg";
-import water_purifier2 from "@/public/water purifier/water-purifier2.jpg";
+import water_purifier1 from "@/public/water purifier/water-purifier1.webp";
+import water_purifier2 from "@/public/water purifier/water-purifier2.webp";
+import water_purifier3 from "@/public/water purifier/water-purifier3.webp";
+import water_purifier4 from "@/public/water purifier/water-purifier4.webp";
+import water_purifier5 from "@/public/water purifier/water-purifier5.webp";
+import water_purifier6 from "@/public/water purifier/water-purifier6.jpg";
+import water_purifier7 from "@/public/water purifier/water-purifier7.jpg";
+import water_purifier8 from "@/public/water purifier/water-purifier8.jpg";
+import water_purifier9 from "@/public/water purifier/water-purifier9.jpg";
 
 // Mock Data strictly following the layout style and parameters in the image
 const INITIAL_PRODUCTS = [
   {
     id: 1,
-    name: "KENT Sapphire IoT RO Water Purifier",
+    name: "Aquaguard Enrich Vector RO+UV+MC 2X Water Purifier ",
     description:
-      "KENT Sapphire IoT is the most advanced RO water purifier that uses multiple purification processes of RO+UF+UV+Alkaline+Copper +TDS Control with smart monitoring features.",
-    bestPrice: 21999,
+      "Advanced water purification featuring RO and UV technologies combined with Mineral Charge (MC) to enrich your drinking water with essential minerals and deliver double the safety.",
+    bestPrice: 17500,
     mrp: 28000,
     discount: "Save 21%",
-    image: water_purifier1, // Replace with your product image path
+    image: water_purifier1,
     color: "Black",
     popularity: 5,
     isSoldOut: false,
   },
   {
     id: 2,
-    name: "KENT Grand IoT RO Water Purifier",
+    name: "Aquaguard Water Purifier Aspire Nova Pro RO+UV 2X IOT",
     description:
-      "KENT Grand IoT is the most advanced RO water purifier that uses a multiple purification process of RO+UV+UF+Alkaline+Copper+TDS Control + UV in tank parameters.",
+      "A smart, next-gen water purifier featuring RO+UV multi-stage protection and 2X IoT smart monitoring capabilities to track water quality and filter life directly from your smartphone.",
+    bestPrice: 9000,
+    mrp: 28000,
+    discount: "Save 21%",
+    image: water_purifier2,
+    color: "Black",
+    popularity: 4,
+    isSoldOut: false,
+  },
+  {
+    id: 3,
+    name: "Aquaguard Aspire Blaze 2X UV+UF Stainless Steel Water Purifier",
+    description:
+      "Combines the dual protection of UV and UF technologies with a premium, hygienic stainless steel storage tank to ensure pure, chemical-free drinking water.",
+    bestPrice: 9500,
+    mrp: 28000,
+    discount: "Save 21%",
+    image: water_purifier3,
+    color: "Black",
+    popularity: 5,
+    isSoldOut: false,
+  },
+  {
+    id: 4,
+    name: "Aquaguard Aspire Nova WS RO+UV+UF Water Purifier 7 L RO + UV + MTDS + Copper 7 L RO + UV + Copper + TDS Control",
+    description:
+      "Equipped with a 7-liter tank, this comprehensive purifier utilizes RO+UV+UF filtration, active Copper infusion, and an MTDS regulator to control taste and total dissolved solids dynamically.",
+    bestPrice: 26500,
+    mrp: 28000,
+    discount: "Save 21%",
+    image: water_purifier4,
+    color: "Black",
+    popularity: 4,
+    isSoldOut: false,
+  },
+  {
+    id: 5,
+    name: "NILE CANIX-W-01 10 L RO + UF + Alkaline Water Purifier",
+    description:
+      "Featuring a generous 10-liter storage capacity, this system combines robust RO and UF filtration with an alkaline filter to optimize pH levels and keep your body perfectly hydrated.",
+    bestPrice: 25000,
+    mrp: 28000,
+    discount: "Save 21%",
+    image: water_purifier5,
+    color: "Black",
+    popularity: 5,
+    isSoldOut: false,
+  },
+  {
+    id: 6,
+    name: "Simflo 25LTR Commercial Water Purifier | RO+TDS Control+Copper",
+    description:
+      "High-capacity 25-liter commercial water purifier engineered with high-output RO technology, an active Copper filter, and precision TDS control for offices and small businesses.",
+    bestPrice: 25500,
+    mrp: 28000,
+    discount: "Save 21%",
+    image: water_purifier6,
+    color: "Black",
+    popularity: 4,
+    isSoldOut: false,
+  },
+  {
+    id: 7,
+    name: "New Apple Veda | Premium RO Water Purifier | Premium Black In Color",
+    description:
+      "An elegant, premium black edition water purifier utilizing multistage RO filtration to deliver pristine taste while complementing modern kitchen aesthetics.",
     bestPrice: 21999,
     mrp: 28000,
     discount: "Save 21%",
-    image: water_purifier2, // Replace with your product image path
+    image: water_purifier7,
+    color: "Black",
+    popularity: 5,
+    isSoldOut: false,
+  },
+  {
+    id: 8,
+    name: "Simflo 50LTR Commercial Water Purifier | RO+TDS Control+Copper",
+    description:
+      "Heavy-duty 50-liter commercial purification system designed to cater to large crowds. Features robust RO filtration, automatic TDS management, and integrated copper enrichment.",
+    bestPrice: 8000,
+    mrp: 28000,
+    discount: "Save 21%",
+    image: water_purifier8,
+    color: "Black",
+    popularity: 4,
+    isSoldOut: false,
+  },
+  {
+    id: 9,
+    name: "AQUAULTRA Glory Multi stage Purification 8 Liter RO +UV+ B12, Alkaline + Auto TDS Control Water Purifier Filter",
+    description:
+      "An advanced 8-liter wellness purifier that offers RO and UV stages, automatic TDS control, alkaline balancing, and unique Vitamin B12 enrichment for healthier drinking water.",
+    bestPrice: 6000,
+    mrp: 28000,
+    discount: "Save 21%",
+    image: water_purifier9,
     color: "Black",
     popularity: 4,
     isSoldOut: false,
@@ -246,7 +344,7 @@ export default function WaterPurifier() {
                   {/* Product Copy Specifications Wrapper */}
                   <div className="space-y-2 flex-1 flex flex-col justify-between">
                     <div className="space-y-1.5">
-                      <h2 className="text-sm font-bold tracking-tight text-slate-900 leading-snug">
+                      <h2 className="text-sm font-sans font-semibold tracking-tight text-slate-900 leading-snug">
                         {product.name}
                       </h2>
                       <p className="text-[11px] leading-relaxed text-gray-400 line-clamp-3">
@@ -255,14 +353,14 @@ export default function WaterPurifier() {
                     </div>
 
                     {/* Pricing Matrix Labels Frame */}
-                    {/* <div className="pt-3 pb-4 space-y-0.5">
-                      <div className="text-xs text-slate-900 font-medium">
+                    <div className="pt-3 pb-4 space-y-0.5">
+                      <div className="text-xs font-serif text-slate-900 font-medium">
                         Best Price :{" "}
-                        <span className="font-extrabold">
+                        <span className="font-sans">
                           ₹ {product.bestPrice.toLocaleString("en-IN")}.00
                         </span>
                       </div>
-                    </div> */}
+                    </div>
 
                     {/* Footer Trigger Operations Buttons Panel row */}
                     <div className="grid grid-cols-1 gap-2.5 pt-1">

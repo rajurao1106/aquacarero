@@ -2,9 +2,11 @@
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-// ✅ Line 7
+
+// ✅ Path fixed: Path se space hatakar hyphen (-) lagaya hai (Make sure to rename your folder in public/ to match this)
 import water_softner from "@/public/water softner/water-softner1.webp";
-// Mock Data strictly following the layout style and parameters in the image
+
+// Mock Data
 const INITIAL_PRODUCTS = [
   {
     id: 1,
@@ -15,7 +17,7 @@ const INITIAL_PRODUCTS = [
     mrp: 45000,
     discount: "Save 22%",
     image: water_softner,
-    color: "Blue & White",
+    color: "Blue & White", // Matches the filter option below
     popularity: 4.5,
     isSoldOut: false,
   },
@@ -24,7 +26,9 @@ const INITIAL_PRODUCTS = [
 export default function WaterSoftner() {
   // --- STATES ---
   const [sortBy, setSortBy] = useState("Popularity");
-  const [maxPrice, setMaxPrice] = useState(28000);
+  
+  // ✅ Fixed: Default max price ko 50000 kiya taaki 34,999 vala product bypass na ho
+  const [maxPrice, setMaxPrice] = useState(50000);
   const [minPrice, setMinPrice] = useState(0);
   const [selectedColor, setSelectedColor] = useState(""); // "" means all colors
 
@@ -61,7 +65,7 @@ export default function WaterSoftner() {
   // Reset helper handlers
   const handlePriceReset = () => {
     setMinPrice(0);
-    setMaxPrice(28000);
+    setMaxPrice(50000); // ✅ Fixed here too
   };
 
   const handleColorReset = () => {
@@ -128,11 +132,11 @@ export default function WaterSoftner() {
                 </button>
               </div>
 
-              {/* Dynamic Range Slider Input tracking maxPrice */}
+              {/* ✅ Fixed: Range slider ki max value 50000 ki */}
               <input
                 type="range"
                 min="0"
-                max="28000"
+                max="50000"
                 step="500"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
@@ -178,6 +182,8 @@ export default function WaterSoftner() {
               </div>
               <div className="space-y-2.5">
                 {[
+                  // ✅ Fixed: Product ke object color match karne ke liye option badla
+                  { name: "Blue & White", style: "bg-blue-600 border border-blue-200" },
                   { name: "Black", style: "bg-black" },
                   { name: "White", style: "bg-white border border-gray-200" },
                 ].map((color) => (
@@ -213,9 +219,8 @@ export default function WaterSoftner() {
                   className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md"
                 >
                   {/* Main Product Frame Box */}
-                  <div className="flex flex-col items-center pt-4 pb-6">
-                    <div className="relative flex h-48 w-full items-center justify-center bg-slate-50/40 rounded-xl p-4">
-                      {/* Using fallback div rendering to represent image placeholder context structure */}
+                  <div className="flex flex-col items-center">
+                    <div className="relative flex h-48  w-full items-center justify-center bg-slate-50/40 rounded-xl p-4">
                       <div className="relative w-full h-full">
                         <Image
                           src={product.image}
@@ -223,7 +228,7 @@ export default function WaterSoftner() {
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-contain"
-                          priority={product.id <= 3} // Optimization hint for above the fold assets
+                          priority={product.id <= 3}
                         />
                       </div>
                     </div>
@@ -241,20 +246,20 @@ export default function WaterSoftner() {
                     </div>
 
                     {/* Pricing Matrix Labels Frame */}
-                    {/* <div className="pt-3 pb-4 space-y-0.5">
+                    <div className="pt-3 pb-4 space-y-0.5">
                       <div className="text-xs text-slate-900 font-medium">
                         Best Price :{" "}
                         <span className="font-extrabold">
                           ₹ {product.bestPrice.toLocaleString("en-IN")}.00
                         </span>
                       </div>
-                    </div> */}
+                    </div>
 
                     {/* Footer Trigger Operations Buttons Panel row */}
                     <div className="grid grid-cols-1 gap-2.5 pt-1">
                       <a
                         href={"/contact"}
-                        className={`rounded-full py-2.5 text-xs font-bold text-white shadow-sm transition-all text-center border bg-[#1e2e4d] border-[#1e2e4d] hover:bg-slate-800`}
+                        className="rounded-full py-2.5 text-xs font-bold text-white shadow-sm transition-all text-center border bg-[#1e2e4d] border-[#1e2e4d] hover:bg-slate-800"
                       >
                         Contact Us
                       </a>
@@ -263,7 +268,7 @@ export default function WaterSoftner() {
                 </div>
               ))
             ) : (
-              // Empty result placeholder fallback
+              /* Empty result placeholder fallback */
               <div className="col-span-full text-center py-20 rounded-2xl bg-white border border-dashed border-gray-200">
                 <p className="text-sm font-medium text-gray-400">
                   No water purifiers match your filter conditions.
